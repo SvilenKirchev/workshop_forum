@@ -45,4 +45,9 @@ export class UserService {
     return this.http.post(`${apiUrl}/users/logout`, {}, {withCredentials: true})
       .pipe(tap(()  => this.currentUser = null));
   }
+
+  updateProfile(data: any): Observable<IUser> {
+    return this.http.put(`${apiUrl}/users/profile`, data, {withCredentials: true})
+      .pipe(tap((user: IUser) => this.currentUser = user));
+  }
 }
